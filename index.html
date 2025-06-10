@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>International BAC Estimator</title>
+    <!-- Link to our external stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>International BAC Estimator</h1>
+        
+        <form id="bac-form">
+            <!-- This paragraph will be used to display validation errors -->
+            <p id="error-message" class="error"></p>
+
+            <div class="form-group">
+                <label for="country">Your Location (Country)</label>
+                <select id="country" required></select>
+            </div>
+
+            <div class="form-group">
+                <label for="sex">Biological Sex</label>
+                <select id="sex" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="weight">Your Body Weight (in kilograms)</label>
+                <input type="number" id="weight" placeholder="e.g., 75" required min="1">
+            </div>
+
+            <div class="form-group">
+                <label for="volume">Total Drink Volume (in milliliters)</label>
+                <input type="number" id="volume" placeholder="e.g., 500 for one beer" required min="1">
+            </div>
+
+            <div class="form-group">
+                <label for="abv">Alcohol By Volume (ABV %)</label>
+                <input type="number" id="abv" placeholder="e.g., 4.5 for a 4.5% beer" required min="0" step="0.1">
+            </div>
+
+            <div class="form-group">
+                <label for="hours">Time Since You Started Drinking (in hours)</label>
+                <input type="number" id="hours" placeholder="e.g., 1.5 for 1 hour 30 mins" required min="0" step="0.1">
+            </div>
+
+            <button type="submit">Calculate My Estimated BAC</button>
+        </form>
+
+        <!-- The aria-live attribute makes this section accessible -->
+        <div id="results" aria-live="polite">
+            <p>Total Alcohol Consumed: <span id="alcohol-grams"></span> grams</p>
+            <p>Estimated <strong>Peak</strong> BAC: <span id="peak-bac"></span> ‰ (per mille)</p>
+            <hr>
+            <p>Estimated <strong>Current</strong> BAC (after elimination):</p>
+            <div id="status-message" class="status"></div>
+            <p id="law-notes" class="law-notes"></p>
+        </div>
+
+        <p class="disclaimer">
+            <strong>Legal Disclaimer:</strong> This tool provides a scientific estimation based on the Widmark formula and is for educational purposes only. It is not a substitute for professional legal or medical advice. Individual metabolic rates and other factors will cause variations. Do not rely on this estimate to make decisions about driving. The user assumes all risk. Legal limits last verified October 2023. The only safe BAC for driving is 0.00‰.
+        </p>
+    </div>
+
+    <!-- The 'defer' attribute ensures the script runs after the page is parsed -->
+    <script defer src="script.js"></script>
+
+</body>
+</html>
